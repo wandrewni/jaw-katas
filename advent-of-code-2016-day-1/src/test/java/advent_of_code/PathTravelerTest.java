@@ -12,4 +12,10 @@ public class PathTravelerTest {
         assertEquals(0, pathTraveler.getX());
         assertEquals(0, pathTraveler.getY());
     }
+
+    @Test
+    public void initialPositioning() {
+        PathTraveler pathTraveler = new PathTraveler();
+        pathTraveler.travel("");
+    }
 }
