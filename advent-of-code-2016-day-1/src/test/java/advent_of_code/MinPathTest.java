@@ -60,8 +60,7 @@ class PathFinder {
     private List<String> path = new ArrayList<>();
     private int length;
 
-    public PathFinder() {
-    }
+    PathFinder() {}
 
     public void addEdge(String start, String end, int length) {
         edges.add(new Edge(start, end, length));
@@ -85,11 +84,11 @@ class PathFinder {
     }
 
     private static class Edge {
-        public final String begin;
-        public final String end;
-        public final int length;
+        final String begin;
+        final String end;
+        final int length;
 
-        public Edge(String begin, String end, int length) {
+        Edge(String begin, String end, int length) {
             this.begin = begin;
             this.end = end;
             this.length = length;
