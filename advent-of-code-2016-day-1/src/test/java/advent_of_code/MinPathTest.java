@@ -23,12 +23,15 @@ public class MinPathTest {
     private PathFinder makePathFinder(String graph) {
         PathFinder pf = new PathFinder();
         Pattern edgePattern = Pattern.compile("(\\D+)(\\d+)(\\D+)");
-        Matcher matcher = edgePattern.matcher(graph);
-        if (matcher.matches()) {
-            String start = matcher.group(1);
-            int length = Integer.parseInt(matcher.group(2));
-            String end = matcher.group(3);
-            pf.addEdge(start, end, length);
+        String[] edges = graph.split(",");
+        for (String edge : edges) {
+            Matcher matcher = edgePattern.matcher(edge);
+            if (matcher.matches()) {
+                String start = matcher.group(1);
+                int length = Integer.parseInt(matcher.group(2));
+                String end = matcher.group(3);
+                pf.addEdge(start, end, length);
+            }
         }
         pf.findPath("A", "Z");
         return pf;
@@ -60,7 +63,8 @@ class PathFinder {
     private List<String> path = new ArrayList<>();
     private int length;
 
-    PathFinder() {}
+    PathFinder() {
+    }
 
     public void addEdge(String start, String end, int length) {
         edges.add(new Edge(start, end, length));
@@ -68,7 +72,7 @@ class PathFinder {
 
     public void findPath(String begin, String end) {
         for (Edge edge : edges)
-            if (edge.begin.equals(begin) && edge.end.equals(end)) {
+            if (edge.begin.equals(begin) || edge.end.equals(end)) {
                 length += edge.length;
                 path.add(edge.begin);
                 path.add(edge.end);
