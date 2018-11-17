@@ -17,19 +17,22 @@ public class PathTravelerTest {
     @Test
     public void pathTraveler() {
         assertOrientation("N");
-        assertEquals(0, pathTraveler.getX());
-        assertEquals(0, pathTraveler.getY());
+        assertCoordinates(0, 0);
     }
 
     @Test
     public void initialPositioning() {
         pathTraveler.travel("");
         assertOrientation("N");
-        assertEquals(0, pathTraveler.getX());
-        assertEquals(0, pathTraveler.getY());
+        assertCoordinates(0, 0);
     }
 
     private void assertOrientation(String direction) {
         assertEquals(ChristmasCoordinates.Direction.valueOf(direction), pathTraveler.getOrientation());
+    }
+
+    private void assertCoordinates(int expectedX, int expectedY) {
+        assertEquals(expectedX, pathTraveler.getX());
+        assertEquals(expectedY, pathTraveler.getY());
     }
 }
