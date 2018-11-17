@@ -20,6 +20,11 @@ public class MinPathTest {
         assertMinPath("B1Z", 0, "{}"); // no start
     }
 
+    @Test
+    public void oneEdge() {
+        assertMinPath("A1Z", 1, "{AZ}");
+    }
+
     public static class PathFinder {
         public PathFinder(String graph) {
         }
