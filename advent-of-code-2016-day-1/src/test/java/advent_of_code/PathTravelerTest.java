@@ -17,5 +17,8 @@ public class PathTravelerTest {
     public void travelingAnEmptyPathResultsInNoCoordinatesChange() {
         PathTraveler pathTraveler = new PathTraveler();
         pathTraveler.travel("");
+        assertEquals(ChristmasCoordinates.Direction.N, pathTraveler.getOrientation());
+        assertEquals(0, pathTraveler.getX());
+        assertEquals(0, pathTraveler.getY());
     }
 }
