@@ -16,4 +16,8 @@ public class PathTraveler {
     public int getY() {
         return y;
     }
+
+    public void travel(String directions) {
+
+    }
 }
