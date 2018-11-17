@@ -71,12 +71,23 @@ class PathFinder {
     }
 
     public void findPath(String begin, String end) {
-        for (Edge edge : edges)
-            if (edge.begin.equals(begin) || edge.end.equals(end)) {
-                length += edge.length;
+        //noinspection StatementWithEmptyBody
+        if (edges.size() == 0) {}
+        else if (edges.size() == 1) {
+            Edge edge = edges.get(0);
+            if (edge.begin.equals(begin) && edge.end.equals(end)) {
                 path.add(edge.begin);
                 path.add(edge.end);
+                length += edge.length;
             }
+        } else {
+            for (Edge edge : edges)
+                if (edge.begin.equals(begin) || edge.end.equals(end)) {
+                    path.add(edge.begin);
+                    path.add(edge.end);
+                    length += edge.length;
+                }
+        }
     }
 
     public int getLength() {
