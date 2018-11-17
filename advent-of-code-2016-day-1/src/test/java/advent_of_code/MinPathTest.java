@@ -69,6 +69,11 @@ public class MinPathTest {
         assertMinPath("A1B,B2C,C3Z,B4D,D6E", 6, "[A, B, C, Z]");
         assertMinPath("A1B,B2C,C3D,C3Z", 6, "[A, B, C, Z]");
     }
+
+    @Test
+    public void parallelPaths() {
+        assertMinPath("A1B,B2Z,A1Z", 1, "[A, Z]");
+    }
 }
 
 class PathFinder {
