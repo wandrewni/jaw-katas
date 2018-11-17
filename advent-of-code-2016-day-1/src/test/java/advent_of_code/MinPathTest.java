@@ -110,10 +110,14 @@ class PathFinder {
         Node curNode = nodes.get(node);
         for (Edge e : neighbors) {
             Node nbr = nodes.get(e.end);
-            nbr.length = curNode.length + e.length;
-            nbr.path = new ArrayList<>();
-            nbr.path.addAll(curNode.path);
-            nbr.path.add(node);
+
+            int newLength = curNode.length + e.length;
+            if (nbr.length > newLength) {
+                nbr.length = newLength;
+                nbr.path = new ArrayList<>();
+                nbr.path.addAll(curNode.path);
+                nbr.path.add(node);
+            }
         }
     }
 
