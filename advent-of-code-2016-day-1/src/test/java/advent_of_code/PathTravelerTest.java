@@ -10,7 +10,7 @@ public class PathTravelerTest {
     private PathTraveler pathTraveler;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         pathTraveler = new PathTraveler();
     }
 
@@ -25,6 +25,12 @@ public class PathTravelerTest {
         pathTraveler.travel("");
         assertOrientation("N");
         assertCoordinates(0, 0);
+    }
+
+    @Test
+    public void positioningAfterSingleLeftTurn() {
+        pathTraveler.travel("L1");
+        assertOrientation("W");
     }
 
     private void assertOrientation(String direction) {
