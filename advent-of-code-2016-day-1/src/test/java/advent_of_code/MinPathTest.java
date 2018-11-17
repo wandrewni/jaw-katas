@@ -10,14 +10,12 @@ import java.util.regex.Pattern;
 
 public class MinPathTest {
 
-    private static final String ANY = null;
-
     private void assertMinPath(String graph, Integer length, String path) {
         PathFinder pf = makePathFinder(graph);
         if (length != null)
-            Assert.assertEquals(length, pf.minLength("A", "Z"));
+            Assert.assertEquals((int) length, pf.getLength());
         if (path != null)
-            Assert.assertEquals(path, pf.minPath("A", "Z").toString());
+            Assert.assertEquals(path, pf.getPath().toString());
     }
 
     private PathFinder makePathFinder(String graph) {
@@ -30,6 +28,7 @@ public class MinPathTest {
             String end = matcher.group(3);
             pf.addEdge(start, end, length);
         }
+        pf.findPath("A", "Z");
         return pf;
     }
 
@@ -51,27 +50,30 @@ public class MinPathTest {
 class PathFinder {
     private List<Edge> edges = new ArrayList<>();
     private List<String> path = new ArrayList<>();
+    private int length;
 
-    public PathFinder() {}
+    public PathFinder() {
+    }
 
-    public Integer minLength(String begin, String end) {
-        int length = 0;
-        for (Edge edge : edges) {
+    public void addEdge(String start, String end, int length) {
+        edges.add(new Edge(start, end, length));
+    }
+
+    public void findPath(String begin, String end) {
+        for (Edge edge : edges)
             if (edge.begin.equals(begin) && edge.end.equals(end)) {
                 length += edge.length;
                 path.add(edge.begin);
                 path.add(edge.end);
             }
-        }
+    }
+
+    public int getLength() {
         return length;
     }
 
-    public List<String> minPath(String begin, String end) {
+    public List<String> getPath() {
         return path;
-    }
-
-    public void addEdge(String start, String end, int length) {
-        edges.add(new Edge(start, end, length));
     }
 
     private static class Edge {
