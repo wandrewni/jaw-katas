@@ -16,7 +16,7 @@ public class PathTravelerTest {
 
     @Test
     public void pathTraveler() {
-        assertEquals(ChristmasCoordinates.Direction.N, pathTraveler.getOrientation());
+        assertOrientation("N");
         assertEquals(0, pathTraveler.getX());
         assertEquals(0, pathTraveler.getY());
     }
@@ -24,8 +24,12 @@ public class PathTravelerTest {
     @Test
     public void travelingAnEmptyPathResultsInNoCoordinatesChange() {
         pathTraveler.travel("");
-        assertEquals(ChristmasCoordinates.Direction.N, pathTraveler.getOrientation());
+        assertOrientation("N");
         assertEquals(0, pathTraveler.getX());
         assertEquals(0, pathTraveler.getY());
+    }
+
+    private void assertOrientation(String direction) {
+        assertEquals(ChristmasCoordinates.Direction.valueOf(direction), pathTraveler.getOrientation());
     }
 }
