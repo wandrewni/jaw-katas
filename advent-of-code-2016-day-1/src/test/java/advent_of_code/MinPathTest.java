@@ -44,6 +44,7 @@ public class MinPathTest {
     @Test
     public void oneEdge() {
         assertMinPath("A1Z", 1, "[A, Z]");
+        assertMinPath("A2Z", 2, "[A, Z]");
     }
 }
 
