@@ -18,6 +18,8 @@ public class PathTraveler {
     }
 
     public void travel(String directions) {
+        if ("".equals(directions)) return;
 
+        orientation = ChristmasCoordinates.Direction.W;
     }
 }
