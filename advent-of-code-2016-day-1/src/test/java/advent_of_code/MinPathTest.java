@@ -17,7 +17,7 @@ public class MinPathTest {
         if (length != null)
             Assert.assertEquals(length, pf.minLength("A", "Z"));
         if (path != null)
-            Assert.assertEquals(path, pf.minPath("A", "Z"));
+            Assert.assertEquals(path, pf.minPath("A", "Z").toString());
     }
 
     private PathFinder makePathFinder(String graph) {
@@ -35,35 +35,39 @@ public class MinPathTest {
 
     @Test
     public void degenerateCases() {
-        assertMinPath("", 0, "{}");    //empty graph
-        assertMinPath("A", 0, "{}");   //one node
-        assertMinPath("B1C", 0, "{}"); // no start or end
-        assertMinPath("A1C", 0, "{}"); // no end
-        assertMinPath("B1Z", 0, "{}"); // no start
+        assertMinPath("", 0, "[]");    //empty graph
+        assertMinPath("A", 0, "[]");   //one node
+        assertMinPath("B1C", 0, "[]"); // no start or end
+        assertMinPath("A1C", 0, "[]"); // no end
+        assertMinPath("B1Z", 0, "[]"); // no start
     }
 
     @Test
     public void oneEdge() {
-        assertMinPath("A1Z", 1, ANY);
+        assertMinPath("A1Z", 1, "[A, Z]");
     }
 }
 
 class PathFinder {
     private List<Edge> edges = new ArrayList<>();
+    private List<String> path = new ArrayList<>();
 
     public PathFinder() {}
 
     public Integer minLength(String begin, String end) {
         int length = 0;
         for (Edge edge : edges) {
-            if (edge.begin.equals(begin) && edge.end.equals(end))
+            if (edge.begin.equals(begin) && edge.end.equals(end)) {
                 length += edge.length;
+                path.add(edge.begin);
+                path.add(edge.end);
+            }
         }
         return length;
     }
 
-    public String minPath(String begin, String end) {
-        return "{}";
+    public List<String> minPath(String begin, String end) {
+        return path;
     }
 
     public void addEdge(String start, String end, int length) {
