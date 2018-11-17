@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 
 public class MinPathTest {
 
+    private static final String ANY = null;
+
     private void assertMinPath(String graph, Integer length, String path) {
         PathFinder pf = makePathFinder(graph);
         if (length != null)
@@ -45,6 +47,11 @@ public class MinPathTest {
     public void oneEdge() {
         assertMinPath("A1Z", 1, "[A, Z]");
         assertMinPath("A2Z", 2, "[A, Z]");
+    }
+
+    @Test
+    public void twoEdges() {
+        assertMinPath("A1B,B1Z", 2, ANY);
     }
 }
 
