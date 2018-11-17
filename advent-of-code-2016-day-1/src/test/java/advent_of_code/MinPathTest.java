@@ -54,7 +54,12 @@ class PathFinder {
     public PathFinder() {}
 
     public Integer minLength(String begin, String end) {
-        return 0;
+        int length = 0;
+        for (Edge edge : edges) {
+            if (edge.begin.equals(begin) && edge.end.equals(end))
+                length += edge.length;
+        }
+        return length;
     }
 
     public String minPath(String begin, String end) {
