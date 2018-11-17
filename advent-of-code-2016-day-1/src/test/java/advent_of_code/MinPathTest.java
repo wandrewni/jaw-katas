@@ -58,6 +58,17 @@ public class MinPathTest {
         assertMinPath("B1Z,A1B", 2, "[A, B, Z]");
         assertMinPath("A1X,Y1Z", 0, "[]");
     }
+
+    @Test
+    public void threeEdges() {
+        assertMinPath("A2B,B3C,C4Z", 9, "[A, B, C, Z]");
+        assertMinPath("B3C,C4Z,A2B", 9, "[A, B, C, Z]");
+    }
+
+    @Test
+    public void onlyOnePath() {
+        assertMinPath("A1B,B2C,C3Z,B4D,D6E", 6, "[A, B, C, Z]");
+    }
 }
 
 class PathFinder {
