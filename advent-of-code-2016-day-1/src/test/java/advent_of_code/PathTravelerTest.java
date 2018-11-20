@@ -63,6 +63,12 @@ public class PathTravelerTest {
         assertCoordinates(3, 4);
     }
 
+    @Test
+    public void travelingMultipleSteps() throws Exception {
+        pathTraveler.travel("L1, L2");
+        assertCoordinates(-1, -2);
+    }
+
     private void assertOrientation(String direction) {
         assertEquals(ChristmasCoordinates.Direction.valueOf(direction), pathTraveler.getOrientation());
     }
