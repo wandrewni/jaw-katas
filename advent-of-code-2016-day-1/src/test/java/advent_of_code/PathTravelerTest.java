@@ -51,6 +51,12 @@ public class PathTravelerTest {
         assertOrientation("N");
     }
 
+    @Test
+    public void traveling() throws Exception {
+        pathTraveler.travel("L2");
+        assertCoordinates(-2, 0);
+    }
+
     private void assertOrientation(String direction) {
         assertEquals(ChristmasCoordinates.Direction.valueOf(direction), pathTraveler.getOrientation());
     }
