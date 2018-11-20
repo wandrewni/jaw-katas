@@ -57,6 +57,10 @@ public class PathTravelerTest {
         assertCoordinates(-2, 0);
         pathTraveler.travel("L4");
         assertCoordinates(-2, -4);
+        pathTraveler.travel("L5");
+        assertCoordinates(3, -4);
+        pathTraveler.travel("L8");
+        assertCoordinates(3, 4);
     }
 
     private void assertOrientation(String direction) {

@@ -25,10 +25,11 @@ public class PathTraveler {
 
         adjustOrientation(step);
 
+        final Integer numSteps = Integer.valueOf(step.substring(1));
         if (getOrientation() == W)
-            x -= Integer.valueOf(step.substring(1));
+            x -= numSteps;
         else
-            y -= Integer.valueOf(step.substring(1));
+            y -= numSteps;
     }
 
     private void adjustOrientation(String step) {
