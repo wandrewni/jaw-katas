@@ -29,13 +29,13 @@ public class PathTravelerTest {
 
     @Test
     public void orientationAfterSingleLeftTurn() {
-        pathTraveler.travel("L1");
+        pathTraveler.travel("L0");
         assertOrientation("W");
-        pathTraveler.travel("L1");
+        pathTraveler.travel("L0");
         assertOrientation("S");
-        pathTraveler.travel("L1");
+        pathTraveler.travel("L0");
         assertOrientation("E");
-        pathTraveler.travel("L1");
+        pathTraveler.travel("L0");
         assertOrientation("N");
     }
 
