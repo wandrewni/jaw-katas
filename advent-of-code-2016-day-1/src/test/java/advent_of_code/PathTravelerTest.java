@@ -33,6 +33,10 @@ public class PathTravelerTest {
         assertOrientation("W");
         pathTraveler.travel("L1");
         assertOrientation("S");
+        pathTraveler.travel("L1");
+        assertOrientation("E");
+        pathTraveler.travel("L1");
+        assertOrientation("N");
     }
 
     private void assertOrientation(String direction) {
