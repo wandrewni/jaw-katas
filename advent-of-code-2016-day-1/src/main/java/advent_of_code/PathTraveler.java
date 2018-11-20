@@ -24,22 +24,24 @@ public class PathTraveler {
         if ("".equals(directions)) return;
 
         final String[] steps = directions.replaceAll(" ", "").split(",");
-        for (String step : steps) {
-            adjustOrientation(step);
-
-            travelDistance(Integer.valueOf(step.substring(1)));
-        }
+        for (String step : steps)
+            travel(step.charAt(0), Integer.valueOf(step.substring(1)));
     }
 
-    private void adjustOrientation(String step) {
-        if (step.startsWith("R")) {
+    private void travel(char direction, Integer distance) {
+        adjustOrientation(direction);
+        travel(distance);
+    }
+
+    private void adjustOrientation(char direction) {
+        if (direction == 'R') {
             turnRight();
         } else {
             turnLeft();
         }
     }
 
-    private void travelDistance(Integer distance) {
+    private void travel(Integer distance) {
         final ChristmasCoordinates.Direction orientation = getOrientation();
         if (orientation == W) x -= distance;
         else if (orientation == S) y -= distance;
