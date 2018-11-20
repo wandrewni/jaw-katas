@@ -23,8 +23,14 @@ public class PathTraveler {
     public void travel(String directions) {
         if ("".equals(directions)) return;
 
-        orientation++;
+        if (directions.startsWith("R"))
+            orientation--;
+        else
+            orientation++;
+
         if (orientation == 4)
             orientation = 0;
+        else if (orientation == -1)
+            orientation = 3;
     }
 }
