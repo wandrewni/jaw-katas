@@ -20,6 +20,9 @@ public class PathTraveler {
     public void travel(String directions) {
         if ("".equals(directions)) return;
 
-        orientation = ChristmasCoordinates.Direction.W;
+        if (orientation == ChristmasCoordinates.Direction.W)
+            orientation = ChristmasCoordinates.Direction.S;
+        else
+            orientation = ChristmasCoordinates.Direction.W;
     }
 }
