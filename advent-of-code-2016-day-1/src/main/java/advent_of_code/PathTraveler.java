@@ -20,17 +20,32 @@ public class PathTraveler {
         return y;
     }
 
-    public void travel(String directions) {
-        if ("".equals(directions)) return;
+    public void travel(String step) {
+        if ("".equals(step)) return;
 
-        if (directions.startsWith("R"))
-            orientation--;
-        else
-            orientation++;
-
-        if (orientation == 4)
-            orientation = 0;
-        else if (orientation == -1)
-            orientation = 3;
+        adjustOrientation(step);
     }
+
+    private void adjustOrientation(String step) {
+        if (step.startsWith("R")) {
+            turnRight();
+        } else {
+            turnLeft();
+        }
+    }
+
+    private void turnLeft() {
+        orientation++;
+        if (orientation == directions.length) {
+            orientation = 0;
+        }
+    }
+
+    private void turnRight() {
+        orientation--;
+        if (orientation < 0) {
+            orientation = 3;
+        }
+    }
+
 }
