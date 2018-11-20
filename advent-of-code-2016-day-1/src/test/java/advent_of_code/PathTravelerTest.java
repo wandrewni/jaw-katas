@@ -28,10 +28,11 @@ public class PathTravelerTest {
     }
 
     @Test
-    public void positioningAfterSingleLeftTurn() {
+    public void orientationAfterSingleLeftTurn() {
         pathTraveler.travel("L1");
         assertOrientation("W");
-        assertCoordinates(-1, 0);
+        pathTraveler.travel("L1");
+        assertOrientation("S");
     }
 
     private void assertOrientation(String direction) {
