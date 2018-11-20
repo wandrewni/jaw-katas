@@ -56,4 +56,7 @@ public class PathTraveler {
         if (orientation < 0) orientation = 3;
     }
 
+    int getTravelDistance() {
+        return Math.abs(x) + Math.abs(y);
+    }
 }
