@@ -24,6 +24,8 @@ public class PathTraveler {
         if ("".equals(step)) return;
 
         adjustOrientation(step);
+
+        x -= 2;
     }
 
     private void adjustOrientation(String step) {
