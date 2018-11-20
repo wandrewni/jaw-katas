@@ -20,12 +20,15 @@ public class PathTraveler {
         return y;
     }
 
-    public void travel(String step) {
-        if ("".equals(step)) return;
+    public void travel(String directions) {
+        if ("".equals(directions)) return;
 
-        adjustOrientation(step);
+        final String[] steps = directions.replaceAll(" ", "").split(",");
+        for (String step : steps) {
+            adjustOrientation(step);
 
-        travelDistance(Integer.valueOf(step.substring(1)));
+            travelDistance(Integer.valueOf(step.substring(1)));
+        }
     }
 
     private void adjustOrientation(String step) {
