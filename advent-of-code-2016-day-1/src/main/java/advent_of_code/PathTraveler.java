@@ -1,12 +1,15 @@
 package advent_of_code;
 
+import static advent_of_code.ChristmasCoordinates.Direction.*;
+
 public class PathTraveler {
-    private ChristmasCoordinates.Direction orientation = ChristmasCoordinates.Direction.N;
+    private static final ChristmasCoordinates.Direction[] directions = new ChristmasCoordinates.Direction[] {N, W, S, E};
+    private int orientation = 0;
     private int x;
     private int y;
 
     public ChristmasCoordinates.Direction getOrientation() {
-        return orientation;
+        return directions[orientation];
     }
 
     public int getX() {
@@ -20,19 +23,8 @@ public class PathTraveler {
     public void travel(String directions) {
         if ("".equals(directions)) return;
 
-        switch (orientation) {
-            case W:
-                orientation = ChristmasCoordinates.Direction.S;
-                break;
-            case S:
-                orientation = ChristmasCoordinates.Direction.E;
-                break;
-            case E:
-                orientation = ChristmasCoordinates.Direction.N;
-                break;
-            default:
-                orientation = ChristmasCoordinates.Direction.W;
-                break;
-        }
+        orientation++;
+        if (orientation == 4)
+            orientation = 0;
     }
 }
