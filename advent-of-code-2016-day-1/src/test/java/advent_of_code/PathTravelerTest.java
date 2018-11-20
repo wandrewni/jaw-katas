@@ -39,6 +39,18 @@ public class PathTravelerTest {
         assertOrientation("N");
     }
 
+    @Test
+    public void orientationAfterRightTurns() {
+        pathTraveler.travel("R0");
+        assertOrientation("E");
+        pathTraveler.travel("R0");
+        assertOrientation("S");
+        pathTraveler.travel("R0");
+        assertOrientation("W");
+        pathTraveler.travel("R0");
+        assertOrientation("N");
+    }
+
     private void assertOrientation(String direction) {
         assertEquals(ChristmasCoordinates.Direction.valueOf(direction), pathTraveler.getOrientation());
     }
