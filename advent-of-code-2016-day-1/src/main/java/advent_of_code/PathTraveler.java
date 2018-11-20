@@ -29,20 +29,11 @@ public class PathTraveler {
     }
 
     private void travelDistance(Integer distance) {
-        switch (getOrientation()) {
-            case W:
-                x -= distance;
-                break;
-            case S:
-                y -= distance;
-                break;
-            case E:
-                x += distance;
-                break;
-            default:
-                y += distance;
-                break;
-        }
+        final ChristmasCoordinates.Direction orientation = getOrientation();
+        if (orientation == W) x -= distance;
+        else if (orientation == S) y -= distance;
+        else if (orientation == E) x += distance;
+        else y += distance;
     }
 
     private void adjustOrientation(String step) {
