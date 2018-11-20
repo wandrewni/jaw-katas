@@ -31,6 +31,7 @@ public class PathTravelerTest {
     public void positioningAfterSingleLeftTurn() {
         pathTraveler.travel("L1");
         assertOrientation("W");
+        assertCoordinates(-1, 0);
     }
 
     private void assertOrientation(String direction) {
