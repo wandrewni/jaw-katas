@@ -28,7 +28,7 @@ public class PathTravelerTest {
     }
 
     @Test
-    public void orientationAfterSingleLeftTurn() {
+    public void orientationAfterLeftTurns() {
         pathTraveler.travel("L0");
         assertOrientation("W");
         pathTraveler.travel("L0");
