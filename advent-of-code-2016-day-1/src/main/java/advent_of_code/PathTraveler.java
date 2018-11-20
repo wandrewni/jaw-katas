@@ -3,7 +3,7 @@ package advent_of_code;
 import static advent_of_code.ChristmasCoordinates.Direction.*;
 
 public class PathTraveler {
-    private static final ChristmasCoordinates.Direction[] directions = new ChristmasCoordinates.Direction[] {N, W, S, E};
+    private static final ChristmasCoordinates.Direction[] directions = new ChristmasCoordinates.Direction[]{N, W, S, E};
     private int orientation = 0;
     private int x;
     private int y;
@@ -25,15 +25,24 @@ public class PathTraveler {
 
         adjustOrientation(step);
 
-        final Integer numSteps = Integer.valueOf(step.substring(1));
-        if (getOrientation() == W)
-            x -= numSteps;
-        else if (getOrientation() == S)
-            y -= numSteps;
-        else if (getOrientation() == E)
-            x += numSteps;
-        else
-            y += numSteps;
+        travelDistance(Integer.valueOf(step.substring(1)));
+    }
+
+    private void travelDistance(Integer distance) {
+        switch (getOrientation()) {
+            case W:
+                x -= distance;
+                break;
+            case S:
+                y -= distance;
+                break;
+            case E:
+                x += distance;
+                break;
+            default:
+                y += distance;
+                break;
+        }
     }
 
     private void adjustOrientation(String step) {
