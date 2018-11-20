@@ -34,11 +34,8 @@ public class PathTraveler {
     }
 
     private void adjustOrientation(char direction) {
-        if (direction == 'R') {
-            turnRight();
-        } else {
-            turnLeft();
-        }
+        if (direction == 'R') turnRight();
+        else turnLeft();
     }
 
     private void travel(Integer distance) {
@@ -51,16 +48,12 @@ public class PathTraveler {
 
     private void turnLeft() {
         orientation++;
-        if (orientation == directions.length) {
-            orientation = 0;
-        }
+        if (orientation == directions.length) orientation = 0;
     }
 
     private void turnRight() {
         orientation--;
-        if (orientation < 0) {
-            orientation = 3;
-        }
+        if (orientation < 0) orientation = 3;
     }
 
 }
