@@ -20,13 +20,19 @@ public class PathTraveler {
     public void travel(String directions) {
         if ("".equals(directions)) return;
 
-        if (orientation == ChristmasCoordinates.Direction.W)
-            orientation = ChristmasCoordinates.Direction.S;
-        else if (orientation == ChristmasCoordinates.Direction.S)
-            orientation = ChristmasCoordinates.Direction.E;
-        else if (orientation == ChristmasCoordinates.Direction.E)
-            orientation = ChristmasCoordinates.Direction.N;
-        else
-            orientation = ChristmasCoordinates.Direction.W;
+        switch (orientation) {
+            case W:
+                orientation = ChristmasCoordinates.Direction.S;
+                break;
+            case S:
+                orientation = ChristmasCoordinates.Direction.E;
+                break;
+            case E:
+                orientation = ChristmasCoordinates.Direction.N;
+                break;
+            default:
+                orientation = ChristmasCoordinates.Direction.W;
+                break;
+        }
     }
 }
