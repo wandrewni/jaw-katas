@@ -22,6 +22,10 @@ public class PathTraveler {
 
         if (orientation == ChristmasCoordinates.Direction.W)
             orientation = ChristmasCoordinates.Direction.S;
+        else if (orientation == ChristmasCoordinates.Direction.S)
+            orientation = ChristmasCoordinates.Direction.E;
+        else if (orientation == ChristmasCoordinates.Direction.E)
+            orientation = ChristmasCoordinates.Direction.N;
         else
             orientation = ChristmasCoordinates.Direction.W;
     }
