@@ -1,15 +1,16 @@
 package advent_of_code;
 
-import static advent_of_code.ChristmasCoordinates.Direction.*;
+import advent_of_code.PathTraveler.Compass.Direction;
+
+import static advent_of_code.PathTraveler.Compass.Direction.*;
 
 public class PathTraveler {
-    private static final ChristmasCoordinates.Direction[] directions = new ChristmasCoordinates.Direction[]{N, W, S, E};
-    private int orientation = 0;
+    private final Compass compass = new Compass();
     private int x;
     private int y;
 
-    public ChristmasCoordinates.Direction getOrientation() {
-        return directions[orientation];
+    public Direction getOrientation() {
+        return compass.getOrientation();
     }
 
     public int getX() {
@@ -24,39 +25,46 @@ public class PathTraveler {
         if ("".equals(directions)) return;
 
         final String[] steps = directions.replaceAll(" ", "").split(",");
-        for (String step : steps)
-            travel(step.charAt(0), Integer.valueOf(step.substring(1)));
+        for (String step : steps) {
+            compass.adjustOrientation(step.charAt(0));
+            final Integer distance = Integer.valueOf(step.substring(1));
+            travel(distance, compass.getOrientation());
+        }
     }
 
-    private void travel(char direction, Integer distance) {
-        adjustOrientation(direction);
-        travel(distance);
-    }
-
-    private void adjustOrientation(char direction) {
-        if (direction == 'R') turnRight();
-        else turnLeft();
-    }
-
-    private void travel(Integer distance) {
-        final ChristmasCoordinates.Direction orientation = getOrientation();
-        if (orientation == W) x -= distance;
-        else if (orientation == S) y -= distance;
-        else if (orientation == E) x += distance;
+    private void travel(Integer distance, Direction direction) {
+        if (direction == W) x -= distance;
+        else if (direction == S) y -= distance;
+        else if (direction == E) x += distance;
         else y += distance;
-    }
-
-    private void turnLeft() {
-        orientation++;
-        if (orientation == directions.length) orientation = 0;
-    }
-
-    private void turnRight() {
-        orientation--;
-        if (orientation < 0) orientation = 3;
     }
 
     int getTravelDistance() {
         return Math.abs(x) + Math.abs(y);
+    }
+
+    public static class Compass {
+        private static final Direction[] directions = new Direction[]{N, W, S, E};
+        private int orientation = 0;
+
+        private void adjustOrientation(char direction) {
+            if (direction == 'R') turnRight();
+            else turnLeft();
+        }
+
+        private void turnLeft() {
+            orientation++;
+            if (orientation == directions.length) orientation = 0;
+        }
+
+        private void turnRight() {
+            orientation--;
+            if (orientation < 0) orientation = 3;
+        }
+
+        Direction getOrientation() {
+            return directions[orientation];
+        }
+        public enum Direction{N, E, S, W}
     }
 }

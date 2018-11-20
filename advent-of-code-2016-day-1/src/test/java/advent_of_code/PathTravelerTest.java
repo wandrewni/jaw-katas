@@ -1,5 +1,6 @@
 package advent_of_code;
 
+import advent_of_code.PathTraveler.Compass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -77,7 +78,7 @@ public class PathTravelerTest {
     }
 
     private void assertOrientation(String direction) {
-        assertEquals(ChristmasCoordinates.Direction.valueOf(direction), pathTraveler.getOrientation());
+        assertEquals(Compass.Direction.valueOf(direction), pathTraveler.getOrientation());
     }
 
     private void assertCoordinates(int expectedX, int expectedY) {
