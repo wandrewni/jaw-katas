@@ -28,20 +28,20 @@ public class PathTraveler {
         travelDistance(Integer.valueOf(step.substring(1)));
     }
 
-    private void travelDistance(Integer distance) {
-        final ChristmasCoordinates.Direction orientation = getOrientation();
-        if (orientation == W) x -= distance;
-        else if (orientation == S) y -= distance;
-        else if (orientation == E) x += distance;
-        else y += distance;
-    }
-
     private void adjustOrientation(String step) {
         if (step.startsWith("R")) {
             turnRight();
         } else {
             turnLeft();
         }
+    }
+
+    private void travelDistance(Integer distance) {
+        final ChristmasCoordinates.Direction orientation = getOrientation();
+        if (orientation == W) x -= distance;
+        else if (orientation == S) y -= distance;
+        else if (orientation == E) x += distance;
+        else y += distance;
     }
 
     private void turnLeft() {
