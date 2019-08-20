@@ -1,0 +1,11 @@
+{
+  "name": "javascript-katas",
+  "version": "1.0.0",
+  "description": "Javascript Katas!",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC"
+}
