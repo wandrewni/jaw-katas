@@ -1,21 +1,24 @@
-export const countTuples = (boxIds) => {
-  const result = {}
-  if (boxIds.length === 0)
-    result.twos = 0
-  else {
-    const id = boxIds[0]
-    result.twos = hasMultiples(id, 2) ? 1 : 0
-    result.threes = hasMultiples(id, 3) ? 1 : 0
+export const computeChecksum = (boxIds) => {
+  const result = {
+    twos: 0,
+    threes: 0
   }
+  boxIds.forEach(boxId => {
+    result.twos += hasMultiples(boxId, 2)
+    result.threes += hasMultiples(boxId, 3)
+  })
+  result.checksum = result.twos * result.threes
   return result
 }
-const hasMultiples = (id, ocurrences) => {
+
+const hasMultiples = (id, occurrences) => {
   for (let i = 0; i < id.length; i++) {
     let charCount = 1
     for (let j = 0; j < id.length; j++) {
-      if (i!==j && id[i] === id[j]) charCount++
+      if (i !== j && id[i] === id[j]) charCount++
     }
-    if (charCount === ocurrences) return true
+    if (charCount === occurrences) return true
   }
   return false
 }
+

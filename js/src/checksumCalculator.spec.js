@@ -1,5 +1,5 @@
-import {countTuples} from './checksumCalculator'
-
+import { computeChecksum } from './checksumCalculator'
+import { readFileSync } from 'fs'
 
 describe('checksum calculator', () => {
   it('should return 0 counts for empty input', () => {
@@ -23,42 +23,41 @@ describe('checksum calculator', () => {
   it('should return triple count of 1 for string with one triple', () =>{
     checkExpectedThrees(['aaa'], 1)
   })
+  it('should return 0 for no triple', () => {
+    checkExpectedThrees([''],0)
+    checkExpectedThrees(['aa'],0)
+  })
+  it('should return 1 double and 1 triple for 1 string with both', () => {
+    checkExpectedThrees(['ababa'],1)
+    checkExpectedTwos(['ababa'],1)
+  })
+  it('should return triple count of 1 for 2 triples in one string',() => {
+    checkExpectedThrees(['ababab'],1)
+  })
+  it('should return 2 doubles for a set of multiple strings with 2 doubles',() => {
+    checkExpectedTwos(['ababa', 'cdc', 'abcd'],2)
+  })
+  it('should return 2 threes for a set of multiple strings with 2 triples', () => {
+    checkExpectedThrees(['aaa', 'bbb'], 2)
+  })
+  it('calculates the checksum of multiple strings', () =>{
+    const result = computeChecksum(['aa', 'bb', 'cc', 'ddd', 'eee']).checksum
+    expect(result).toEqual(6)
+  })
+  it('should calculate the puzzle input', () => {
+    const input = readFileSync(__dirname + '/checksum-calculator-input.txt').toString().split('\n')
+    expect(computeChecksum(input).checksum).toEqual(7192)
+  })
 })
 
 
+
 const checkExpectedTwos = (input, expectedTwos) => {
-  const result = countTuples(input)
+  const result = computeChecksum(input)
   expect(result.twos).toEqual(expectedTwos)
 }
 
 const checkExpectedThrees = (input, expectedThrees) => {
-  const result = countTuples(input)
+  const result = computeChecksum(input)
   expect(result.threes).toEqual(expectedThrees)
 }
-
-it('should collect counts', () => {
-  const myString = 'abcsafssa'
-
-  console.log(myString)
-  const result = {}
-  for (let i = 0; i < myString.length; i++) {
-    let letter = myString[i]
-    if (!result[letter]) result[letter] = 0
-    result[letter]++
-  }
-  console.log(result)
-})
-/*
-empty list counts 0 - done
-empty string counts 0 - done
-string with a 2-ple counts for 2 - done
-more than 2 is not a tuple
-triples should not count as doubles
-string with a 3-ple counts for 3
-string with neither counts for neither
-string with 2-ple and 3-ple counts for both
-string with 2 2-ples counts only once
-string with 2 3-ples counts only once
-should collect tuple counts for multiple words
-checksum is 2pls * 3pls
- */
