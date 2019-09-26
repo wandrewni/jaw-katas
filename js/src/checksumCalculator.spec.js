@@ -1,4 +1,4 @@
-const {countTuples} = require('./checksumCalculator')
+import {countTuples} from './checksumCalculator'
 
 
 describe('checksum calculator', () => {
